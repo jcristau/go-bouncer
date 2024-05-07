@@ -242,6 +242,12 @@ INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/f
 INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/releases/43.0.1/win64/:lang/Firefox%20Setup%2043.0.1.exe',3,1,7);
 INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/releases/43.0.1/mac/:lang/Firefox%2043.0.1.dmg',3,2,8);
 INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/releases/43.0.1/win32/:lang/Firefox%20Setup%2043.0.1.exe',3,3,9);
+
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/nightly/latest-mozilla-central-l10n/firefox-128.0a1.:lang.win64.installer.exe',4,1,10);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/nightly/latest-mozilla-central-l10n/firefox-128.0a1.:lang.win32.installer.exe',4,3,11);
+
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/nightly/2024/05/2024-05-06-09-48-55-mozilla-central-l10n/firefox-127.0a1.:lang.win64.installer.exe',5,1,12);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/nightly/2024/05/2024-05-06-09-48-55-mozilla-central-l10n/firefox-127.0a1.:lang.win32.installer.exe',5,3,13);
 /*!40000 ALTER TABLE `mirror_locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,6 +289,8 @@ LOCK TABLES `mirror_products` WRITE;
 INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox',1,1,1,1,0);
 INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-SSL',1,1,1,2,1);
 INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-43.0.1-SSL',1,1,1,3,1);
+INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-nightly-latest-SSL',1,1,1,4,1);
+INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-127.0a1-SSL',1,1,1,5,1);
 /*!40000 ALTER TABLE `mirror_products` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -161,6 +161,36 @@ func sha1Product(product string) string {
 	return product
 }
 
+// detect stub installers that pin the "DigiCert SHA2 Assured ID Code Signing CA" intermediate
+
+var fxPre2024LastNightly = xpRelease{"127.0a1"}
+
+var pre2024StubUA = "NSIS InetBgDL (Mozilla)"
+
+func isPre2024StubUserAgent(userAgent string) bool {
+	return pre2024StubUA == userAgent
+}
+
+func pre2024Product(product string) string {
+	productParts := strings.SplitN(product, "-", 2)
+	if len(productParts) == 1 {
+		return product
+	}
+	if productParts[0] != "firefox" {
+		return product
+	}
+
+	switch (productParts[1]) {
+	case "nightly-latest", "nightly-latest-l10n":
+		return "firefox-" + fxPre2024LastNightly.Version
+	case "nightly-latest-ssl", "nightly-latest-l10n-ssl":
+		return "firefox-" + fxPre2024LastNightly.Version + "-ssl"
+	}
+
+	return product
+
+}
+
 // HealthResult represents service health
 type HealthResult struct {
 	DB      bool   `json:"db"`
@@ -433,6 +463,7 @@ func (b *BouncerHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	isWinXpClient := isWindowsXPUserAgent(req.UserAgent())
+	isPre2024Stub := isPre2024StubUserAgent(req.UserAgent())
 
 	// If the client is not WinXP and attribution_code is set, redirect to the stub service
 	if b.shouldAttribute(reqParams) && !isWinXpClient {
@@ -447,6 +478,10 @@ func (b *BouncerHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	// HACKS
 	if reqParams.OS == "win" && isWinXpClient {
 		reqParams.Product = sha1Product(reqParams.Product)
+	}
+	// If the user is an "old" stub installer, send a pre-2024-cert-rotation product
+	if isPre2024Stub {
+		reqParams.Product = pre2024Product(reqParams.Product)
 	}
 
 	url, err := b.URL(b.shouldPinHttps(req), reqParams.Lang, reqParams.OS, reqParams.Product)
