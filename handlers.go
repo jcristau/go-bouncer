@@ -165,8 +165,11 @@ func sha1Product(product string) string {
 
 var fxPre2024LastNightly = xpRelease{"127.0a1"}
 var fxPre2024LastBeta = xpRelease{"127.0b4"}
+var fxPre2024LastRelease = xpRelease{"126.0.1"}
 
 var pre2024StubUA = "NSIS InetBgDL (Mozilla)"
+
+var fxPartnerAlias = regexp.MustCompile(`^partner-firefox-release-([^-]*)-(.*)-latest$`)
 
 func isPre2024StubUserAgent(userAgent string) bool {
 	return pre2024StubUA == userAgent
@@ -177,6 +180,11 @@ func pre2024Product(product string) string {
 	if len(productParts) == 1 {
 		return product
 	}
+	partnerMatch := fxPartnerAlias.FindStringSubmatch(product)
+	if partnerMatch != nil && partnerMatch[1] == "unitedinternet" {
+		return "firefox-" + fxPre2024LastRelease.Version + "-unitedinternet-" + partnerMatch[2]
+	}
+
 	if productParts[0] != "firefox" {
 		return product
 	}
@@ -194,6 +202,10 @@ func pre2024Product(product string) string {
 		return "devedition-" + fxPre2024LastBeta.Version + "-ssl"
 	case "devedition-latest":
 		return "devedition-" + fxPre2024LastBeta.Version
+	case "latest-ssl":
+		return "firefox-" + fxPre2024LastRelease.Version + "-ssl"
+	case "latest":
+		return "firefox-" + fxPre2024LastRelease.Version
 	}
 
 	return product
