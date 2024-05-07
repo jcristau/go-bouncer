@@ -216,6 +216,8 @@ LOCK TABLES `mirror_aliases` WRITE;
 /*!40000 ALTER TABLE `mirror_aliases` DISABLE KEYS */;
 INSERT INTO `mirror_aliases` (`id`, `alias`, `related_product`) VALUES (1,'firefox-latest','Firefox');
 INSERT INTO `mirror_aliases` (`id`, `alias`, `related_product`) VALUES (2,'firefox-sha1','Firefox-43.0.1-SSL');
+INSERT INTO `mirror_aliases` (`id`, `alias`, `related_product`) VALUES (3,'firefox-beta-latest-ssl','Firefox-SSL');
+INSERT INTO `mirror_aliases` (`id`, `alias`, `related_product`) VALUES (4,'firefox-devedition-latest-ssl','Devedition-SSL');
 /*!40000 ALTER TABLE `mirror_aliases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,6 +250,18 @@ INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/f
 
 INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/nightly/2024/05/2024-05-06-09-48-55-mozilla-central-l10n/firefox-127.0a1.:lang.win64.installer.exe',5,1,12);
 INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/nightly/2024/05/2024-05-06-09-48-55-mozilla-central-l10n/firefox-127.0a1.:lang.win32.installer.exe',5,3,13);
+
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/releases/127.0b4/win64/:lang/Firefox%20Setup%20127.0b4.exe',6,1,14);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/releases/127.0b4/mac/:lang/Firefox%20Setup%20127.0b4.exe',6,2,15);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/firefox/releases/127.0b4/win32/:lang/Firefox%20Setup%20127.0b4.exe',6,3,16);
+
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/devedition/releases/128.0b9/win64/:lang/Firefox%20Setup%20128.0b9.exe',7,1,17);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/devedition/releases/128.0b9/mac/:lang/Firefox%20Setup%20128.0b9.exe',7,2,18);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/devedition/releases/128.0b9/win32/:lang/Firefox%20Setup%20128.0b9.exe',7,3,19);
+
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/devedition/releases/127.0b4/win64/:lang/Firefox%20Setup%20127.0b4.exe',8,1,20);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/devedition/releases/127.0b4/mac/:lang/Firefox%20Setup%20127.0b4.exe',8,2,21);
+INSERT INTO `mirror_locations` (`path`, `product_id`, `os_id`, `id`) VALUES ('/devedition/releases/127.0b4/win32/:lang/Firefox%20Setup%20127.0b4.exe',8,3,22);
 /*!40000 ALTER TABLE `mirror_locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,6 +305,9 @@ INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`
 INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-43.0.1-SSL',1,1,1,3,1);
 INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-nightly-latest-SSL',1,1,1,4,1);
 INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-127.0a1-SSL',1,1,1,5,1);
+INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Firefox-127.0b4-SSL',1,1,1,6,1);
+INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Devedition-SSL',1,1,1,7,1);
+INSERT INTO `mirror_products` (`count`, `name`, `checknow`, `priority`, `active`, `id`, `ssl_only`) VALUES (0,'Devedition-127.0b4-SSL',1,1,1,8,1);
 /*!40000 ALTER TABLE `mirror_products` ENABLE KEYS */;
 UNLOCK TABLES;
 

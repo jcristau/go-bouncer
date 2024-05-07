@@ -164,6 +164,7 @@ func sha1Product(product string) string {
 // detect stub installers that pin the "DigiCert SHA2 Assured ID Code Signing CA" intermediate
 
 var fxPre2024LastNightly = xpRelease{"127.0a1"}
+var fxPre2024LastBeta = xpRelease{"127.0b4"}
 
 var pre2024StubUA = "NSIS InetBgDL (Mozilla)"
 
@@ -185,6 +186,14 @@ func pre2024Product(product string) string {
 		return "firefox-" + fxPre2024LastNightly.Version
 	case "nightly-latest-ssl", "nightly-latest-l10n-ssl":
 		return "firefox-" + fxPre2024LastNightly.Version + "-ssl"
+	case "beta-latest-ssl":
+		return "firefox-" + fxPre2024LastBeta.Version + "-ssl"
+	case "beta-latest":
+		return "firefox-" + fxPre2024LastBeta.Version
+	case "devedition-latest-ssl":
+		return "devedition-" + fxPre2024LastBeta.Version + "-ssl"
+	case "devedition-latest":
+		return "devedition-" + fxPre2024LastBeta.Version
 	}
 
 	return product
